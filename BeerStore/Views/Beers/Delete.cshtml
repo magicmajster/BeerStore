@@ -1,0 +1,16 @@
+﻿@model BeerStore.Models.Beer
+
+<h2>Delete Beer</h2>
+
+<div class="alert alert-danger">
+    <h4>Are you sure you want to delete this beer?</h4>
+    <p><strong>Name:</strong> @Model.Name</p>
+    <p><strong>Country:</strong> @Model.Country.Name</p>
+    <p><strong>Price:</strong> $@Model.Price.ToString("0.00")</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BeerStore.Models.Beer>
+
+<h2 class="mb-4 text-center">Beers</h2>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <p class="fs-5 text-muted">Explore the finest beers from around the world.</p>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-action="Create" class="btn btn-success">Add New Beer</a>
+    }
+</div>
+
+<table class="table table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var beer in Model)
+        {
+            <tr>
+                <td>@beer.Name</td>
+                <td>@beer.Country.Name</td>
+                <td>$@beer.Price.ToString("0.00")</td>
+                <td class="text-center">
+                    <a asp-action="Details" asp-route-id="@beer.Id" class="btn btn-info btn-sm me-1">Details</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@beer.Id" class="btn btn-primary btn-sm me-1">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@beer.Id" class="btn btn-danger btn-sm">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning text-center mt-4">
+        No beers available at the moment. @if (User.IsInRole("Admin"))
+        {
+            <strong>Add some now!</strong>
+        }
+    </div>
+}

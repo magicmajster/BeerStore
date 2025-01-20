@@ -1,0 +1,45 @@
+﻿@model BeerStore.Models.Beer
+
+@{
+    ViewBag.Title = "Create Beer";
+}
+
+<h2>Create a New Beer</h2>
+
+<form asp-action="Create" method="post" class="row g-3">
+    <div class="col-md-6">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="CountryId" class="form-label">Country</label>
+        <select asp-for="CountryId" class="form-select">
+            <option value="">-- Select Country --</option>
+            @foreach (var country in ViewBag.Countries as IEnumerable<SelectListItem>)
+            {
+                <option value="@country.Value">@country.Text</option>
+            }
+        </select>
+        <span asp-validation-for="CountryId" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Price" class="form-label">Price</label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Create Beer</button>
+    </div>
+</form>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>

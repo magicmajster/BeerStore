@@ -1,0 +1,16 @@
+﻿@model BeerStore.Models.Beer
+
+@{
+    ViewBag.Title = "Beer Details";
+}
+
+<h2>Beer Details</h2>
+
+<div>
+    <h3>@Model.Name</h3>
+    <p><strong>Country:</strong> @Model.Country.Name</p>
+    <p><strong>Price:</strong> $@Model.Price</p>
+    <p><strong>Description:</strong> @Model.Description</p>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>
