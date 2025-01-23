@@ -17,6 +17,7 @@
             <th>Country</th>
             <th>Price</th>
             <th>Actions</th>
+            <th>Cart</th>
         </tr>
     </thead>
     <tbody>
@@ -28,11 +29,15 @@
                 <td>$@beer.Price.ToString("0.00")</td>
                 <td class="text-center">
                     <a asp-action="Details" asp-route-id="@beer.Id" class="btn btn-info btn-sm me-1">Details</a>
+
                     @if (User.IsInRole("Admin"))
                     {
                         <a asp-action="Edit" asp-route-id="@beer.Id" class="btn btn-primary btn-sm me-1">Edit</a>
                         <a asp-action="Delete" asp-route-id="@beer.Id" class="btn btn-danger btn-sm">Delete</a>
                     }
+                </td>
+                <td>
+                    <a asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@beer.Id" class="btn btn-success btn-sm">Add to Cart</a>
                 </td>
             </tr>
         }
